@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MyApplication</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_entry_1">Frases</string>
+    <string name="menu_entry_2">Señales</string>
+    <string name="title_activity_categorias">CategoriasActivity</string>
+
+    <string-array name="base">
+        <item>Pedir hora</item>
+        <item>Pedir refresco</item>
+    </string-array>
+    <string name="title_activity_siguiente">SiguienteActivity</string>
+</resources>
