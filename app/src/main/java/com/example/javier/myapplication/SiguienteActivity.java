@@ -1,23 +1,27 @@
 package com.example.javier.myapplication;
 
-import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class SiguienteActivity extends ActionBarActivity {
 
     Bundle bundle;
-    int idRev;
-    ListView lista;
-    ArrayAdapter<String> adaptador;
-    String[] array;
+    Cursor cursor;
+    int id, id1;
+    MediaPlayer mp;
+
+
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +29,28 @@ public class SiguienteActivity extends ActionBarActivity {
         setContentView(R.layout.activity_siguiente);
 
         bundle = getIntent().getExtras();
-        idRev = bundle.getInt("idEnviado");
+        id = bundle.getInt("idEnviado");
+        id1 = bundle.getInt("idcategoria");
+        consultar();
+        cursor.moveToFirst();
 
-        lista = (ListView) findViewById(R.id.idRev);
-        adaptador = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
-        lista.setAdapter(adaptador);
+        TextView text =(TextView)findViewById(R.id.frase);
+        text.setText(cursor.getString(0));
 
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(),SiguienteActivity.class);
-                i.putExtra("id",position);
-            }
-        });
+        TextView text1 = (TextView)findViewById(R.id.fraseingles);
+        text1.setText(cursor.getString(1));
+
+        image = (ImageView)findViewById(R.id.imageView);
+        image.setImageResource(getResources().getIdentifier(cursor.getString(3),"drawable",getPackageName()));
+        mp = MediaPlayer.create(this,getResources().getIdentifier(cursor.getString(2),"raw",getPackageName()));
+
     }
 
+    public void hear(View v)
+    {
+
+        mp.start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,5 +72,14 @@ public class SiguienteActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void consultar()
+    {
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "base", 3, null);
+        SQLiteDatabase base = admin.getWritableDatabase();
+        String query = "SELECT frase, fraseing, audio, imagen FROM frases WHERE id = "+ id1 + " and idfrase = " +id;
+        Log.d("Query",query);
+        cursor = base.rawQuery(query,null);
     }
 }

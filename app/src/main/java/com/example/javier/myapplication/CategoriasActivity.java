@@ -25,6 +25,7 @@ public class CategoriasActivity extends ActionBarActivity {
     ListView lista;
     ArrayAdapter <String> adaptador;
     String[] array;
+    Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class CategoriasActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(),SiguienteActivity.class);
                 i.putExtra("idEnviado",position);
+                i.putExtra("idcategoria",idRecibido);
                 startActivity(i);
             }
         });
@@ -78,20 +80,14 @@ public class CategoriasActivity extends ActionBarActivity {
     {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "base", 3, null);
         SQLiteDatabase base = admin.getWritableDatabase();
-        String query = "SELECT frase FROM app WHERE categoria = "+ idRecibido;
-        Cursor cursor = base.rawQuery(query,null);
+        String query = "SELECT frase FROM frases WHERE id = "+ idRecibido;
+        cursor = base.rawQuery(query,null);
         array = new String[cursor.getCount()];
         int i = 0;
-        /*
-        if (cursor.moveToFirst()){
-            array[0]=cursor.getString(0);
-            lista.setAdapter(adaptador);
-        }*/
         while (cursor.moveToNext())
         {
             array[i] = cursor.getString(0);
             i++;
         }
-        //base.close();
     }
 }

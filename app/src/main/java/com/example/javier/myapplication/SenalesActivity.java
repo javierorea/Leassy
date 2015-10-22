@@ -4,18 +4,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 public class SenalesActivity extends ActionBarActivity {
 
     Bundle bundle;
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_senales);
         bundle = getIntent().getExtras();
+
         TextView texto = (TextView)findViewById(R.id.prueba);
         texto.setText(bundle.getString("textoNuevo"));
     }
