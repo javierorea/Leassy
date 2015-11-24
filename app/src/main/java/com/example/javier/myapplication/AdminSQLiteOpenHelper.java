@@ -6,7 +6,6 @@ import android.database.sqlite.*;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.widget.ListView;
 
-
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
 {
     public AdminSQLiteOpenHelper(Context context, String Nombre, int version, CursorFactory cursorFactory)
@@ -16,7 +15,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
 
     public void onCreate(SQLiteDatabase base)
     {
-        base.execSQL("CREATE TABLE categorias(id integer, frase text, imagen text)");//Tabla de categorías
+        base.execSQL("CREATE TABLE categorias(id integer, frase text)");//Tabla de categorías
 
         base.execSQL("insert into categorias values(0, 'Gobierno');");
         base.execSQL("insert into categorias values(1, 'Comida');");

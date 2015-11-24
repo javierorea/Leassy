@@ -8,42 +8,49 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <activity
-            android:name=".MainActivity"
+            android:name=".Activitys.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".SenalesActivity"
+            android:name=".Activitys.SenalesActivity"
             android:label="@string/menu_entry_2"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".Activitys.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.javier.myapplication.MainActivity" />
+                android:value=".Activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".FrasesActivity"
+            android:name=".Activitys.FrasesActivity"
             android:label="@string/menu_entry_1"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".Activitys.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.javier.myapplication.MainActivity" />
+                android:value=".Activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".CategoriasActivity"
+            android:name=".Activitys.CategoriasActivity"
             android:label="@string/title_activity_categorias"
-            android:parentActivityName=".FrasesActivity">
+            android:parentActivityName=".Activitys.FrasesActivity" >
         </activity>
         <activity
-            android:name=".SiguienteActivity"
+            android:name=".Activitys.SiguienteActivity"
             android:label="@string/title_activity_siguiente"
-            android:parentActivityName=".CategoriasActivity" >
+            android:parentActivityName=".Activitys.CategoriasActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.javier.myapplication.CategoriasActivity" />
+                android:value=".Activitys.CategoriasActivity" />
+        </activity>
+        <activity
+            android:name=".Activitys.SplashScreen"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

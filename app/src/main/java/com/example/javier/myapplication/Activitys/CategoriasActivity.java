@@ -1,20 +1,19 @@
-package com.example.javier.myapplication;
+package com.example.javier.myapplication.Activitys;
 
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.ListAdapter;
 import android.content.Intent;
-import android.widget.TextView;
+
+import com.example.javier.myapplication.AdminSQLiteOpenHelper;
+import com.example.javier.myapplication.R;
 
 
 public class CategoriasActivity extends ActionBarActivity {

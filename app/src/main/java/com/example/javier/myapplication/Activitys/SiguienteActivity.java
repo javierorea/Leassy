@@ -1,8 +1,11 @@
-package com.example.javier.myapplication;
+package com.example.javier.myapplication.Activitys;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,15 +15,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.javier.myapplication.AdminSQLiteOpenHelper;
+import com.example.javier.myapplication.Fragments.DetallesFragment;
+import com.example.javier.myapplication.R;
 
-public class SiguienteActivity extends ActionBarActivity {
+
+public class SiguienteActivity extends ActionBarActivity implements DetallesFragment.OnFragmentInteractionListener{
+
+
 
     Bundle bundle;
     Cursor cursor;
     int id, id1;
     MediaPlayer mp;
-
-
     ImageView image;
 
     @Override
@@ -28,7 +35,13 @@ public class SiguienteActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_siguiente);
 
-        bundle = getIntent().getExtras();
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction trans = manager.beginTransaction();
+        DetallesFragment fragmento = new DetallesFragment();
+        trans.replace(R.id.fragment, fragmento);
+        trans.commit();
+
+        /*bundle = getIntent().getExtras();
         id = bundle.getInt("idEnviado");
         id1 = bundle.getInt("idcategoria");
         consultar();
@@ -50,8 +63,8 @@ public class SiguienteActivity extends ActionBarActivity {
     {
 
         mp.start();
+    }*/
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -74,12 +87,17 @@ public class SiguienteActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void consultar()
+    public void onFragmentInteraction(Uri uri)
+    {
+
+    }
+
+    /*public void consultar()
     {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "base", 3, null);
         SQLiteDatabase base = admin.getWritableDatabase();
         String query = "SELECT frase, fraseing, audio, imagen FROM frases WHERE id = "+ id1 + " and idfrase = " +id;
         Log.d("Query",query);
         cursor = base.rawQuery(query,null);
-    }
+    }*/
 }
